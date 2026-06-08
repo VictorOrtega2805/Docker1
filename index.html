@@ -49,57 +49,57 @@
             filter: drop-shadow(0px 10px 8px rgba(0,0,0,0.7));
         }
 
-        /* Contenedor de la escena hiperrealista */
+        /* Contenedor de la escena */
         .scene-container {
             width: 400px;
             height: 440px;
             position: relative;
         }
 
-        /* --- SISTEMA DE ANIMACIÓN ULTRA FLUIDA --- */
+        /* --- SISTEMA DE ANIMACIÓN ULTRA FLUIDA Y SEGURA --- */
         
-        /* Balanceo inercial completo de la física del perrito */
+        /* Balanceo completo del perrito */
         .surf-dog-group {
             transform-origin: 200px 350px;
-            animation: realisticSurf 3.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
-            filter: drop-shadow(0px 25px 20px rgba(0, 0, 0, 0.65));
+            animation: realisticSurf 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+            filter: drop-shadow(0px 20px 15px rgba(0, 0, 0, 0.55));
         }
 
-        /* Brazo izquierdo buscando balance de forma independiente */
+        /* El hombro izquierdo rota desde ADENTRO del cuerpo (X: 150, Y: 210) */
         .left-arm-joint {
-            transform-origin: 135px 215px;
-            animation: leftArmBalance 1.6s ease-in-out infinite alternate;
+            transform-origin: 150px 210px;
+            animation: leftArmBalance 1.5s ease-in-out infinite alternate;
         }
 
-        /* Brazo derecho rítmico */
+        /* El hombro derecho rota desde ADENTRO del cuerpo (X: 250, Y: 210) */
         .right-arm-joint {
-            transform-origin: 265px 225px;
-            animation: rightArmBalance 1.6s ease-in-out infinite alternate-reverse;
+            transform-origin: 250px 210px;
+            animation: rightArmBalance 1.5s ease-in-out infinite alternate-reverse;
         }
 
-        /* Dinámica del agua de fondo */
+        /* Movimiento sutil del agua de fondo */
         .water-movement {
             animation: waterFlow 4s ease-in-out infinite alternate;
         }
 
         @keyframes realisticSurf {
-            0% { transform: rotate(-7deg) translateY(2px) translateX(-5px); }
-            100% { transform: rotate(7deg) translateY(-6px) translateX(5px); }
+            0% { transform: rotate(-6deg) translateY(2px); }
+            100% { transform: rotate(6deg) translateY(-4px); }
         }
 
         @keyframes leftArmBalance {
-            0% { transform: rotate(-28deg) translateY(-2px); }
-            100% { transform: rotate(18deg) translateY(1px); }
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(15deg); }
         }
 
         @keyframes rightArmBalance {
-            0% { transform: rotate(22deg) translateY(1px); }
-            100% { transform: rotate(-24deg) translateY(-2px); }
+            0% { transform: rotate(18deg); }
+            100% { transform: rotate(-18deg); }
         }
 
         @keyframes waterFlow {
-            0% { transform: scaleY(0.95) translateX(-10px); opacity: 0.4; }
-            100% { transform: scaleY(1.05) translateX(10px); opacity: 0.7; }
+            0% { transform: scaleY(0.95) translateX(-5px); opacity: 0.4; }
+            100% { transform: scaleY(1.05) translateX(5px); opacity: 0.6; }
         }
     </style>
 </head>
@@ -109,154 +109,137 @@
         <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
         
         <div class="scene-container">
-            <!-- Renderizado Vectorial de Avanzada con Iluminación Fotográfica -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 440" width="100%" height="100%">
                 
                 <defs>
-                    <!-- Capa de Iluminación Global de la Piel (Volumen Esférico) -->
-                    <radialGradient id="skin-mesh" cx="40%" cy="30%" r="70%">
+                    <!-- Degradados de piel con volumen esférico real -->
+                    <radialGradient id="skin-mesh" cx="45%" cy="30%" r="70%">
                         <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="25%" stop-color="#fdf8ec"/>
-                        <stop offset="65%" stop-color="#ebdcb9"/>
-                        <stop offset="100%" stop-color="#cbb588"/>
+                        <stop offset="30%" stop-color="#fdf8ec"/>
+                        <stop offset="75%" stop-color="#ebdcb9"/>
+                        <stop offset="100%" stop-color="#caa770"/>
                     </radialGradient>
 
-                    <!-- Sombra Oclusiva para pliegues internos de la piel -->
+                    <!-- Sombra interna del cuello y pliegues anatómicos -->
                     <linearGradient id="shadow-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#cbb588"/>
-                        <stop offset="100%" stop-color="#9a8356"/>
+                        <stop offset="0%" stop-color="#ebdcb9"/>
+                        <stop offset="100%" stop-color="#a89268"/>
                     </linearGradient>
 
-                    <!-- Hiper-volumen de la pancita regordeta (Efecto 3D de la foto) -->
-                    <radialGradient id="belly-mesh" cx="45%" cy="35%" r="60%">
+                    <!-- Volumen hiperrealista de la pancita gorda -->
+                    <radialGradient id="belly-mesh" cx="50%" cy="40%" r="60%">
                         <stop offset="0%" stop-color="#ffffff"/>
-                        <stop offset="35%" stop-color="#fffdf9"/>
-                        <stop offset="75%" stop-color="#ebdcb9"/>
-                        <stop offset="100%" stop-color="#cca770" stop-opacity="0.8"/>
+                        <stop offset="40%" stop-color="#fffdfa"/>
+                        <stop offset="80%" stop-color="#ebdcb9"/>
+                        <stop offset="100%" stop-color="#bfa675"/>
                     </radialGradient>
 
-                    <!-- Cristalización Húmeda de los Ojos -->
+                    <!-- Cristalización de los ojos oscuros -->
                     <radialGradient id="eye-specular" cx="35%" cy="35%" r="50%">
                         <stop offset="0%" stop-color="#57606f"/>
-                        <stop offset="30%" stop-color="#2f3542"/>
                         <stop offset="100%" stop-color="#111215"/>
                     </radialGradient>
 
-                    <!-- Tabla de surf con acabado gloss espejo -->
+                    <!-- Tabla de surf gloss -->
                     <linearGradient id="surf-gloss" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stop-color="#ff3838"/>
-                        <stop offset="30%" stop-color="#ff9f43"/>
-                        <stop offset="60%" stop-color="#ffdd59"/>
+                        <stop offset="40%" stop-color="#ff9f43"/>
+                        <stop offset="80%" stop-color="#ffdd59"/>
                         <stop offset="100%" stop-color="#05c46b"/>
                     </linearGradient>
 
-                    <!-- Filtro de Desenfoque Gaussiano Avanzado para sombras suaves de piel -->
-                    <filter id="soft-blur" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="3"/>
-                    </filter>
-                    <filter id="ultra-soft-blur" x="-30%" y="-30%" width="160%" height="160%">
-                        <feGaussianBlur stdDeviation="6"/>
+                    <!-- Filtro para suavizar sombras de unión -->
+                    <filter id="soft-blur" x="-10%" y="-10%" width="120%" height="120%">
+                        <feGaussianBlur stdDeviation="2.5"/>
                     </filter>
                 </defs>
 
-                <!-- ENTORNO: Estela de agua y espuma realista -->
+                <!-- ENTORNO: Agua de fondo -->
                 <g class="water-movement" filter="url(#soft-blur)">
-                    <path d="M 30 385 Q 100 355 200 390 T 370 375 L 380 420 L 20 420 Z" fill="#ffffff" opacity="0.4"/>
-                    <path d="M 10 395 Q 120 370 220 400 T 390 385 L 390 430 L 10 430 Z" fill="#00d2d3" opacity="0.2"/>
+                    <path d="M 30 385 Q 100 355 200 390 T 370 375 L 380 420 L 20 420 Z" fill="#ffffff" opacity="0.3"/>
                 </g>
 
-                <!-- --- ENTIDAD PRINCIPAL: PERRITO SURFISTA --- -->
+                <!-- --- GRUPO ANIMADO DEL PERRITO --- -->
                 <g class="surf-dog-group">
                     
-                    <!-- Sombra de oclusión debajo del perro sobre la tabla -->
-                    <ellipse cx="200" cy="352" rx="75" ry="14" fill="#000000" opacity="0.45" filter="url(#soft-blur)"/>
+                    <!-- Sombra de la tabla -->
+                    <ellipse cx="200" cy="352" rx="70" ry="12" fill="#000000" opacity="0.4" filter="url(#soft-blur)"/>
 
-                    <!-- TABLA DE SURF PROFESIONAL -->
-                    <path d="M 50 350 C 95 330, 305 330, 350 350 C 365 360, 310 375, 200 375 C 90 375, 35 360, 50 350 Z" fill="url(#surf-gloss)"/>
-                    <!-- Reflejo de luz solar en el chasis de la tabla -->
-                    <path d="M 68 351 C 110 341, 290 341, 332 351 C 280 361, 120 361, 68 351 Z" fill="#ffffff" opacity="0.35"/>
+                    <!-- TABLA DE SURF -->
+                    <path d="M 50 350 C 95 332, 305 332, 350 350 C 365 358, 310 372, 200 372 C 90 372, 35 358, 50 350 Z" fill="url(#surf-gloss)"/>
+                    <path d="M 68 351 C 110 342, 290 342, 332 351 C 280 358, 120 358, 68 351 Z" fill="#ffffff" opacity="0.25"/>
 
-                    <!-- PATAS INFERIORES REALISTAS (Soportando el peso) -->
-                    <!-- Pata Izquierda (En sombra) -->
-                    <path d="M 145 320 C 135 320, 125 342, 142 351 C 158 355, 172 335, 165 320 Z" fill="url(#shadow-gradient)"/>
-                    <ellipse cx="146" cy="346" rx="8" ry="4" fill="#cbb588"/>
-                    <!-- Pata Derecha (Iluminada) -->
-                    <path d="M 225 325 C 220 325, 212 346, 228 353 C 244 355, 256 338, 250 325 Z" fill="url(#skin-mesh)"/>
-                    <ellipse cx="236" cy="348" rx="8" ry="4" fill="#ebdcb9"/>
+                    <!-- PATAS TRASERAS FIJAS (Ffundidas con la base del cuerpo) -->
+                    <path d="M 140 320 C 130 320, 128 344, 145 350 C 160 352, 168 335, 162 320 Z" fill="url(#shadow-gradient)"/>
+                    <path d="M 225 322 C 220 322, 216 345, 232 351 C 248 352, 256 336, 250 322 Z" fill="url(#skin-mesh)"/>
 
-                    <!-- CUERPO ANATÓMICO GORDITO -->
-                    <!-- Capa base de volumen de masa -->
-                    <path d="M 135 220 C 110 270, 120 330, 200 335 C 280 330, 290 270, 265 220 Z" fill="url(#shadow-gradient)"/>
-                    <path d="M 142 220 C 118 260, 128 325, 200 330 C 272 325, 282 260, 258 220 Z" fill="url(#skin-mesh)"/>
-                    
-                    <!-- LA FAMOSA PANCITA HIPERREALISTA DE LA FOTO -->
-                    <path d="M 148 235 C 128 275, 138 325, 200 328 C 262 325, 272 275, 252 235 C 232 215, 168 215, 148 235 Z" fill="url(#belly-mesh)"/>
-                    
-                    <!-- Sombras de pliegue real en la base de la panza (Efecto rollito) -->
-                    <path d="M 160 305 Q 200 316 240 305" stroke="#ba9e6c" stroke-width="3" fill="none" stroke-linecap="round" filter="url(#soft-blur)" opacity="0.8"/>
-                    <!-- Ombligo realista -->
-                    <path d="M 194 290 Q 200 295 206 290" stroke="#9a8356" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-
-                    <!-- BRAZO IZQUIERDO REALISTA (Articulado e independiente) -->
+                    <!-- BRAZO IZQUIERDO REALISTA (Su raíz inicia adentro para que no se abra) -->
                     <g class="left-arm-joint">
-                        <path d="M 138 220 C 110 220, 95 180, 112 165 C 130 148, 150 185, 142 220 Z" fill="url(#skin-mesh)"/>
-                        <!-- Almohadillas plantares rosadas con volumen real -->
-                        <ellipse cx="114" cy="172" rx="6" ry="8" fill="#ffbda9" transform="rotate(-25 114 172)"/>
-                        <circle cx="106" cy="162" r="2.5" fill="#ffa385"/>
-                        <circle cx="114" cy="159" r="2.5" fill="#ffa385"/>
-                        <circle cx="122" cy="163" r="2.5" fill="#ffa385"/>
-                        <!-- Sombra interna de la axila -->
-                        <path d="M 132 200 C 125 205, 122 215, 136 218 Z" fill="#9a8356" opacity="0.5" filter="url(#soft-blur)"/>
+                        <!-- Conector del hombro oculto -->
+                        <path d="M 155 205 C 130 205, 100 175, 115 158 C 132 142, 160 175, 155 205 Z" fill="url(#skin-mesh)"/>
+                        <!-- Almohadillas -->
+                        <ellipse cx="118" cy="166" rx="5" ry="7" fill="#ffbda9" transform="rotate(-25 118 166)"/>
+                        <circle cx="111" cy="157" r="2.2" fill="#ffa385"/>
+                        <circle cx="118" cy="154" r="2.2" fill="#ffa385"/>
+                        <circle cx="125" cy="158" r="2.2" fill="#ffa385"/>
                     </g>
 
-                    <!-- BRAZO DERECHO REALISTA (Extendida hacia el frente de la cámara) -->
+                    <!-- BRAZO DERECHO REALISTA (Raíz oculta perfectamente en el torso) -->
                     <g class="right-arm-joint">
-                        <path d="M 262 225 C 290 225, 310 195, 298 180 C 282 162, 255 195, 258 225 Z" fill="url(#skin-mesh)"/>
-                        <!-- Almohadillas pata derecha -->
-                        <ellipse cx="290" cy="190" rx="6" ry="8" fill="#ffbda9" transform="rotate(25 290 190)"/>
-                        <circle cx="282" cy="180" r="2.5" fill="#ffa385"/>
-                        <circle cx="290" cy="177" r="2.5" fill="#ffa385"/>
-                        <circle cx="298" cy="181" r="2.5" fill="#ffa385"/>
+                        <!-- Conector del hombro oculto -->
+                        <path d="M 245 205 C 270 205, 300 180, 288 163 C 272 147, 240 175, 245 205 Z" fill="url(#skin-mesh)"/>
+                        <!-- Almohadillas -->
+                        <ellipse cx="282" cy="172" rx="5" ry="7" fill="#ffbda9" transform="rotate(25 282 172)"/>
+                        <circle cx="275" cy="163" r="2.2" fill="#ffa385"/>
+                        <circle cx="282" cy="160" r="2.2" fill="#ffa385"/>
+                        <circle cx="289" cy="164" r="2.2" fill="#ffa385"/>
                     </g>
 
-                    <!-- CABEZA DE ALTA FIDELIDAD CON PLIEGUES ANATÓMICOS -->
+                    <!-- CUERPO ANATÓMICO CONTINUO -->
+                    <!-- Tronco unificado que borra huecos -->
+                    <path d="M 140 180 C 115 230, 120 325, 200 332 C 280 325, 285 230, 260 180 Z" fill="url(#shadow-gradient)"/>
+                    <path d="M 145 180 C 122 225, 126 318, 200 326 C 274 318, 278 225, 255 180 Z" fill="url(#skin-mesh)"/>
+                    
+                    <!-- LA GRAN PANCITA ADERIDA AL TRONCO -->
+                    <path d="M 148 225 C 128 265, 138 318, 200 321 C 262 318, 272 265, 252 225 C 232 205, 168 205, 148 225 Z" fill="url(#belly-mesh)"/>
+                    
+                    <!-- Pliegue gordo en la base del abdomen -->
+                    <path d="M 162 298 Q 200 310 238 298" stroke="#ba9e6c" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+                    <path d="M 195 282 Q 200 286 205 282" stroke="#9a8356" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                    <!-- CABEZA PERFECTAMENTE INTEGRADA (Se solapa encima del tronco sin dejar huecos) -->
                     <g>
-                        <!-- Cojín de Papada Inferior para dar volumen al cuello -->
-                        <ellipse cx="202" cy="215" rx="55" ry="22" fill="url(#shadow-gradient)"/>
-                        <ellipse cx="202" cy="212" rx="52" ry="18" fill="url(#skin-mesh)"/>
+                        <!-- Sombra difuminada de la papada integrada al pecho -->
+                        <ellipse cx="200" cy="182" rx="46" ry="14" fill="#a89268" opacity="0.4" filter="url(#soft-blur)"/>
                         
-                        <!-- Cráneo Principal -->
-                        <path d="M 145 165 C 132 110, 268 110, 255 165 C 262 205, 138 205, 145 165 Z" fill="url(#skin-mesh)"/>
+                        <!-- Base de la cara que se funde con el cuello -->
+                        <path d="M 145 155 C 132 105, 268 105, 255 155 C 260 190, 140 190, 145 155 Z" fill="url(#skin-mesh)"/>
                         
-                        <!-- Orejas de Bulldog Caídas con sombra de profundidad -->
-                        <path d="M 148 132 C 140 128, 122 145, 128 162 C 134 172, 148 155, 148 132 Z" fill="url(#shadow-gradient)"/>
-                        <path d="M 252 132 C 260 128, 278 145, 272 162 C 266 172, 252 155, 252 132 Z" fill="url(#shadow-gradient)"/>
+                        <!-- Orejas -->
+                        <path d="M 148 126 C 141 122, 124 138, 129 154 C 134 162, 148 148, 148 126 Z" fill="url(#shadow-gradient)"/>
+                        <path d="M 252 126 C 259 122, 276 138, 271 154 C 266 162, 252 148, 252 126 Z" fill="url(#shadow-gradient)"/>
 
-                        <!-- Ojitos Fieles al Meme (Entornados y tiernos) -->
-                        <ellipse cx="172" cy="155" rx="8" ry="5.5" fill="url(#eye-specular)" transform="rotate(-6 172 155)"/>
-                        <circle cx="170" cy="153" r="1.8" fill="#ffffff"/> <!-- Brillo cristalino izquierdo -->
+                        <!-- Ojos reales entornados -->
+                        <ellipse cx="174" cy="146" rx="7.5" ry="5" fill="url(#eye-specular)" transform="rotate(-6 174 146)"/>
+                        <circle cx="172" cy="144" r="1.5" fill="#ffffff"/>
 
-                        <ellipse cx="228" cy="155" rx="8" ry="5.5" fill="url(#eye-specular)" transform="rotate(6 228 155)"/>
-                        <circle cx="226" cy="153" r="1.8" fill="#ffffff"/> <!-- Brillo cristalino derecho -->
+                        <ellipse cx="226" cy="146" rx="7.5" ry="5" fill="url(#eye-specular)" transform="rotate(6 226 146)"/>
+                        <circle cx="224" cy="144" r="1.5" fill="#ffffff"/>
 
-                        <!-- Arrugas Realistas en la Frente (Sombreadas mediante filtros) -->
-                        <path d="M 185 134 Q 200 129 215 134" stroke="#9a8356" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.75"/>
-                        <path d="M 178 142 Q 200 136 222 142" stroke="#9a8356" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.75"/>
-                        <path d="M 192 148 Q 200 144 208 148" stroke="#9a8356" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        <!-- Arrugas de expresión suavizadas -->
+                        <path d="M 186 126 Q 200 122 214 126" stroke="#9a8356" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.6"/>
+                        <path d="M 180 133 Q 200 128 220 133" stroke="#9a8356" stroke-width="1.8" fill="none" stroke-linecap="round" opacity="0.6"/>
 
-                        <!-- Hocico Gordo / Mofletes con Gradiente de Luz Real -->
-                        <path d="M 165 178 C 165 164, 235 164, 235 178 C 235 200, 165 200, 165 178 Z" fill="url(#belly-mesh)"/>
+                        <!-- Mofletes/Hocico con gradiente esférico -->
+                        <path d="M 166 168 C 166 155, 234 155, 234 168 C 234 188, 166 188, 166 168 Z" fill="url(#belly-mesh)"/>
                         
-                        <!-- Línea Realista del Labio Superior dividida -->
-                        <path d="M 200 174 L 200 191" stroke="#ba9e6c" stroke-width="2" fill="none"/>
-                        <path d="M 180 186 Q 200 196 220 186" stroke="#9a8356" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <!-- Línea del labio real integrada -->
+                        <path d="M 200 166 L 200 180" stroke="#ba9e6c" stroke-width="1.5" fill="none"/>
+                        <path d="M 184 176 Q 200 185 216 176" stroke="#9a8356" stroke-width="2" fill="none" stroke-linecap="round"/>
 
-                        <!-- Nariz de Cuero Húmedo Detallada -->
-                        <path d="M 188 170 C 188 163, 212 163, 212 170 C 212 178, 188 178, 188 170 Z" fill="#1e272e"/>
-                        <!-- Brillo e iluminación en el tabique nasal -->
-                        <path d="M 193 168 C 196 166, 204 166, 207 168" stroke="#718093" stroke-width="1" fill="none"/>
-                        <circle cx="194" cy="173" r="1.2" fill="#000000"/>
-                        <circle cx="206" cy="173" r="1.2" fill="#000000"/>
+                        <!-- Nariz húmeda -->
+                        <path d="M 190 161 C 190 155, 210 155, 210 161 C 210 168, 190 168, 190 161 Z" fill="#23272a"/>
+                        <path d="M 194 159 C 197 157, 203 157, 206 159" stroke="#718093" stroke-width="0.8" fill="none"/>
                     </g>
 
                 </g>
