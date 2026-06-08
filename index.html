@@ -5,70 +5,341 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker de Victor Manuel Ortega Urbano</title>
     <style>
-        /* Fondo azul con cuadrícula limpia idéntica a tu diseño */
+        /* --- FONDO AZUL MINECRAFT CON CUADRÍCULA --- */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
-            background-color: #0b429c;
+            background-color: #0b357d;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-            background-size: 20px 20px; /* Cuadrícula del fondo */
+                linear-gradient(rgba(255, 255, 255, 0.04) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.04) 2px, transparent 2px);
+            background-size: 24px 24px;
             color: #ffffff;
             margin: 0;
-            padding: 0;
+            padding: 40px 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            min-height: 90vh;
+            overflow-x: hidden;
         }
 
-        /* Contenedor principal centrado */
-        .container {
-            max-width: 1000px;
-            padding: 20px;
-        }
-
-        /* Título Dorado en 3D con sombras idéntico a la imagen */
+        /* --- TÍTULO DORADO METÁLICO EN 3D --- */
         h1 { 
             color: #ffcc00;
             font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             text-shadow: 
                 3px 3px 0px #b38600, 
-                5px 5px 5px rgba(0, 0, 0, 0.6);
-            display: inline-block;
+                6px 6px 0px #5e4600,
+                8px 8px 10px rgba(0, 0, 0, 0.7);
             line-height: 1.3;
+            max-width: 950px;
         }
 
-        /* Cohete emoji al inicio del título */
         .rocket {
             margin-right: 15px;
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+            display: inline-block;
+            filter: drop-shadow(3px 3px 2px rgba(0,0,0,0.4));
         }
 
-        /* Imagen central de Steve y el lobo en HD */
-        .minecraft-img {
-            max-width: 500px;
+        /* --- ESCENA TRIDIMENSIONAL (3D) --- */
+        .scene {
+            position: relative;
+            width: 450px;
+            height: 350px;
+            perspective: 1000px; /* Habilita profundidad real */
+            margin-top: 20px;
+        }
+
+        /* Caja contenedora que rota levemente para dar perspectiva */
+        .game-objects {
+            position: absolute;
             width: 100%;
-            height: auto;
-            margin-top: 10px;
-            filter: drop-shadow(0px 15px 20px rgba(0, 0, 0, 0.7));
+            height: 100%;
+            transform-style: preserve-3d;
+            transform: rotateY(-10deg) rotateX(5deg);
+        }
+
+        /* --- PROPIEDADES GENERALES BLOQUES 3D --- */
+        .cube {
+            position: absolute;
+            transform-style: preserve-3d;
+        }
+        .face {
+            position: absolute;
+            box-sizing: border-box;
+        }
+
+        /* --- STEVE ANIMADO (3D) --- */
+        .steve {
+            position: absolute;
+            left: 220px;
+            bottom: 40px;
+            width: 100px;
+            height: 220px;
+            transform-style: preserve-3d;
+            animation: steveIdle 4s ease-in-out infinite;
+        }
+
+        /* Cabeza Cubo 3D de Steve */
+        .steve-head {
+            width: 56px; height: 56px;
+            left: 22px; top: 0;
+            background-color: #c49a6c;
+            box-shadow: inset -6px -6px 0 #a1764b;
+        }
+        /* Pelo Píxel */
+        .steve-head::before {
+            content: ''; position: absolute;
+            width: 100%; height: 16px;
+            background-color: #4a2d11;
+            top: 0; left: 0;
+        }
+        /* Ojos e Imperio */
+        .steve-head::after {
+            content: ''; position: absolute;
+            width: 8px; height: 5px;
+            background-color: #ffffff;
+            box-shadow: 4px 0 #4c11a8, 26px 0 #ffffff, 30px 0 #4c11a8, 12px 14px 0 #915743, 16px 14px 0 #915743, 20px 14px 0 #915743;
+            top: 28px; left: 6px;
+        }
+
+        /* Torso Clásico Cyan */
+        .steve-torso {
+            width: 56px; height: 76px;
+            left: 22px; top: 56px;
+            background-color: #00a896;
+            box-shadow: inset -8px -6px 0 #028074;
+        }
+        /* Cuello de la playera */
+        .steve-torso::after {
+            content: ''; position: absolute;
+            width: 16px; height: 10px;
+            background-color: #c49a6c;
+            top: 0; left: 20px;
+        }
+
+        /* Brazo Izquierdo (Balanceo pasivo) */
+        .steve-arm.left {
+            width: 24px; height: 76px;
+            left: -2px; top: 56px;
+            background-color: #009384;
+            transform-origin: top center;
+            animation: armLeftSwing 4s ease-in-out infinite;
+        }
+        .steve-arm.left::after {
+            content: ''; position: absolute; bottom: 0; width: 100%; height: 16px; background-color: #c49a6c;
+        }
+
+        /* Brazo Derecho Sosteniendo la Espada */
+        .steve-arm.right {
+            width: 24px; height: 76px;
+            left: 78px; top: 56px;
+            background-color: #00c2ad;
+            transform-origin: top center;
+            transform: rotateX(-30deg) rotateY(-15deg);
+            animation: armRightHold 2s ease-in-out infinite alternate;
+        }
+        .steve-arm.right::after {
+            content: ''; position: absolute; bottom: 0; width: 100%; height: 16px; background-color: #c49a6c;
+        }
+
+        /* --- ESPADA DE DIAMANTE RETRO --- */
+        .diamond-sword {
+            position: absolute;
+            width: 14px; height: 95px;
+            background-color: #55ffff;
+            border: 4px solid #00aaaa;
+            left: 4px; bottom: 35px;
+            transform: rotateX(15deg) rotateZ(30deg);
+            box-shadow: 0 0 15px rgba(85, 255, 255, 0.7);
+        }
+        /* Guarda y mango */
+        .diamond-sword::after {
+            content: ''; position: absolute;
+            width: 22px; height: 22px;
+            background-color: #704020; /* Madera */
+            border: 4px solid #4a2507;
+            bottom: -24px; left: -8px;
+        }
+
+        /* Piernas Cúbicas */
+        .steve-leg {
+            width: 26px; height: 80px;
+            background-color: #3c44aa;
+            position: absolute; top: 132px;
+        }
+        .steve-leg.left { left: 22px; }
+        .steve-leg.right { left: 48px; background-color: #2e3487; }
+        .steve-leg::after { content: ''; position: absolute; bottom: 0; width: 100%; height: 14px; background-color: #444444; }
+
+
+        /* --- LOBO FIEL (WOLF EN 3D) --- */
+        .wolf {
+            position: absolute;
+            left: 50px;
+            bottom: 40px;
+            width: 120px;
+            height: 120px;
+            transform-style: preserve-3d;
+            animation: wolfSit 3s ease-in-out infinite;
+        }
+
+        /* Cabeza con relieve */
+        .wolf-head {
+            width: 40px; height: 40px;
+            background-color: #d6d6d6;
+            position: absolute; right: 15px; top: 10px;
+            box-shadow: -4px 4px 0 #b8b8b8;
+        }
+        /* Orejas */
+        .wolf-head::before {
+            content: ''; position: absolute;
+            width: 8px; height: 10px;
+            background-color: #aaaaaa;
+            top: -10px; left: 4px;
+            box-shadow: 24px 0 0 #d6d6d6;
+        }
+        /* Hocico saliente con nariz negra */
+        .wolf-head::after {
+            content: ''; position: absolute;
+            width: 16px; height: 14px;
+            background-color: #e6e6e6;
+            box-shadow: 6px 4px 0 #1c1c1c; /* Nariz pixel */
+            bottom: 0; right: -8px;
+        }
+
+        /* Cuerpo principal */
+        .wolf-body {
+            width: 70px; height: 50px;
+            background-color: #d6d6d6;
+            position: absolute; left: 15px; top: 35px;
+            box-shadow: inset 0 -6px 0 #b8b8b8;
+        }
+
+        /* Collar Morado Fuerte solicitado */
+        .wolf-collar {
+            width: 14px; height: 50px;
+            background-color: #6a1b9a;
+            position: absolute; right: 26px; top: 35px;
+            z-index: 5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* Cola Feliz */
+        .wolf-tail {
+            width: 12px; height: 35px;
+            background-color: #b8b8b8;
+            position: absolute; left: 3px; top: 35px;
+            transform-origin: top center;
+            animation: tailWag 0.5s ease-in-out infinite alternate;
+        }
+
+        /* Patas traseras (Sentado) */
+        .wolf-leg {
+            width: 14px; height: 45px;
+            background-color: #b8b8b8;
+            position: absolute; top: 80px;
+        }
+        .wolf-leg.f-left { left: 20px; }
+        .wolf-leg.f-right { left: 38px; background-color: #c7c7c7; }
+        .wolf-leg.b-left { left: 60px; height: 30px; top: 95px; } /* Más corta simula sentado */
+        .wolf-leg.b-right { left: 74px; height: 30px; top: 95px; background-color: #c7c7c7; }
+
+
+        /* --- PARTÍCULAS DINÁMICAS (EFECTO DEL JUEGO) --- */
+        .particle {
+            position: absolute;
+            z-index: 10;
+            animation: particleFloat 3s linear infinite;
+        }
+        /* Corazones de domesticación */
+        .heart {
+            color: #ff2255;
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 0 #770011;
+        }
+        /* Brillos de la espada de diamante */
+        .sparkle {
+            color: #55ffff;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px #00aaaa;
+        }
+
+
+        /* --- CONFIGURACIÓN DE ANIMACIONES REALEZ --- */
+        @keyframes steveIdle {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-8px) rotateX(1deg); }
+        }
+        @keyframes armRightHold {
+            0% { transform: rotateX(-25deg) rotateY(-10deg); }
+            100% { transform: rotateX(-40deg) rotateY(-20deg); }
+        }
+        @keyframes armLeftSwing {
+            0%, 100% { transform: rotateX(10deg); }
+            50% { transform: rotateX(-10deg); }
+        }
+        @keyframes wolfSit {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.02) translateY(-2px); }
+        }
+        @keyframes tailWag {
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(40deg); }
+        }
+        @keyframes particleFloat {
+            0% { transform: translateY(0) scale(0.6); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-60px) scale(1.1); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Título exacto con el cohete -->
-        <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+    <!-- Título Limpio y en Dorado -->
+    <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+    
+    <!-- Escena Principal -->
+    <div class="scene">
         
-        <br>
-        
-        <!-- Imagen de los personajes en alta calidad -->
-        <img class="minecraft-img" src="https://i.ibb.co/3mSgYv9/render-minecraft.png" alt="Steve and Wolf">
+        <!-- Partículas flotantes alrededor de los personajes -->
+        <div class="particle heart" style="left: 60px; top: 40px; animation-delay: 0s;">❤</div>
+        <div class="particle heart" style="left: 140px; top: 100px; animation-delay: 1.5s;">❤</div>
+        <div class="particle sparkle" style="left: 320px; top: 20px; animation-delay: 0.5s;">✦</div>
+        <div class="particle sparkle" style="left: 260px; top: 90px; animation-delay: 2s;">✦</div>
+
+        <div class="game-objects">
+            
+            <!-- LOBO 3D CON COLLAR MORADO -->
+            <div class="wolf">
+                <div class="wolf-tail"></div>
+                <div class="wolf-body"></div>
+                <div class="wolf-collar"></div>
+                <div class="wolf-head"></div>
+                <div class="wolf-leg f-left"></div>
+                <div class="wolf-leg f-right"></div>
+                <div class="wolf-leg b-left"></div>
+                <div class="wolf-leg b-right"></div>
+            </div>
+
+            <!-- STEVE 3D CON ESPADA DE DIAMANTE -->
+            <div class="steve">
+                <div class="steve-head"></div>
+                <div class="steve-arm left"></div>
+                <div class="steve-torso"></div>
+                <div class="steve-arm right">
+                    <!-- Espada de Diamante colocada estratégicamente -->
+                    <div class="diamond-sword"></div>
+                </div>
+                <div class="steve-leg left"></div>
+                <div class="steve-leg right"></div>
+            </div>
+
+        </div>
     </div>
 
 </body>
