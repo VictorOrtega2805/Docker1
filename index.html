@@ -3,339 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Docker de Victor Manuel Ortega Urbano</title>
+<title>Perrito Surf Animado</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
-    min-height:100vh;
+    margin:0;
+    height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    background: radial-gradient(circle at center,#1b3b5f,#0b1b2e);
+    font-family:Arial;
     overflow:hidden;
-    background:
-    radial-gradient(circle at center,
-    #1e3a5f 0%,
-    #102548 55%,
-    #071327 100%);
-    font-family:Segoe UI, sans-serif;
 }
 
 h1{
-    color:#ffcc00;
-    font-size:3rem;
-    text-align:center;
-    margin-bottom:25px;
-    text-shadow:
-    2px 2px 0 #b58300,
-    4px 4px 0 #805f00,
-    8px 8px 18px rgba(0,0,0,.75);
+    color:#ffd36b;
+    margin-bottom:20px;
+    text-shadow:2px 2px 10px rgba(0,0,0,.6);
 }
 
 .scene{
-    width:450px;
-    height:450px;
-    position:relative;
+    width:420px;
+    height:420px;
 }
 
-.surf-dog{
-    transform-origin:center 350px;
-    animation:surf 4s ease-in-out infinite;
-    filter:drop-shadow(0 20px 18px rgba(0,0,0,.45));
+.dog{
+    transform-origin:200px 300px;
+    animation:float 3.8s ease-in-out infinite;
+    filter:drop-shadow(0 20px 15px rgba(0,0,0,.4));
 }
 
+/* TABLA */
 .board{
-    animation:boardFloat 4s ease-in-out infinite;
-    transform-origin:center;
+    animation:board 3.8s ease-in-out infinite;
+    transform-origin:200px 320px;
 }
 
+/* SOMBRA */
 .shadow{
-    transform-origin:center;
-    animation:shadowMove 4s ease-in-out infinite;
-}
-
-.eyes{
-    animation:blink 6s infinite;
+    animation:shadow 3.8s ease-in-out infinite;
     transform-origin:center;
 }
 
+/* BARRIGA RESPIRA */
 .belly{
-    animation:breath 3s ease-in-out infinite;
+    animation:breath 2.8s ease-in-out infinite;
     transform-origin:center;
 }
 
-.left-arm{
-    transform-origin:150px 210px;
-    animation:leftArm 2s ease-in-out infinite alternate;
+/* BRAZOS */
+.armL{
+    transform-origin:160px 210px;
+    animation:armL 2s ease-in-out infinite;
+}
+.armR{
+    transform-origin:240px 210px;
+    animation:armR 2s ease-in-out infinite;
 }
 
-.right-arm{
-    transform-origin:250px 210px;
-    animation:rightArm 2s ease-in-out infinite alternate;
+/* OJOS (IMPORTANTE: FIX PARPADEO) */
+.eye{
+    transform-box:fill-box;
+    transform-origin:center;
+    animation:blink 5s infinite;
 }
 
-.water{
-    animation:water 5s ease-in-out infinite alternate;
+@keyframes float{
+    0%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-18px) rotate(3deg);}
+    100%{transform:translateY(0) rotate(-3deg);}
 }
 
-@keyframes surf{
-    0%{
-        transform:translateY(0px) rotate(-4deg);
-    }
-    25%{
-        transform:translateY(-8px) rotate(-1deg);
-    }
-    50%{
-        transform:translateY(-18px) rotate(4deg);
-    }
-    75%{
-        transform:translateY(-8px) rotate(1deg);
-    }
-    100%{
-        transform:translateY(0px) rotate(-4deg);
-    }
+@keyframes board{
+    0%{transform:translateY(0) rotate(-2deg);}
+    50%{transform:translateY(6px) rotate(2deg);}
+    100%{transform:translateY(0) rotate(-2deg);}
 }
 
-@keyframes boardFloat{
-    0%{transform:translateY(0px) rotate(-2deg);}
-    50%{transform:translateY(7px) rotate(2deg);}
-    100%{transform:translateY(0px) rotate(-2deg);}
-}
-
-@keyframes shadowMove{
-    0%{
-        transform:scale(1);
-        opacity:.35;
-    }
-    50%{
-        transform:scale(.65);
-        opacity:.12;
-    }
-    100%{
-        transform:scale(1);
-        opacity:.35;
-    }
+@keyframes shadow{
+    0%{transform:scale(1);opacity:.35;}
+    50%{transform:scale(.6);opacity:.15;}
+    100%{transform:scale(1);opacity:.35;}
 }
 
 @keyframes breath{
-    0%,100%{
-        transform:scale(1);
-    }
-    50%{
-        transform:scale(1.03);
-    }
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.04);}
+}
+
+@keyframes armL{
+    0%,100%{transform:rotate(-10deg);}
+    50%{transform:rotate(18deg);}
+}
+
+@keyframes armR{
+    0%,100%{transform:rotate(10deg);}
+    50%{transform:rotate(-18deg);}
 }
 
 @keyframes blink{
-    0%,46%,50%,100%{
-        transform:scaleY(1);
-    }
-    48%{
-        transform:scaleY(.08);
-    }
-}
-
-@keyframes leftArm{
-    from{transform:rotate(-12deg);}
-    to{transform:rotate(16deg);}
-}
-
-@keyframes rightArm{
-    from{transform:rotate(12deg);}
-    to{transform:rotate(-18deg);}
-}
-
-@keyframes water{
-    from{
-        transform:translateX(-8px) scaleY(.95);
-        opacity:.35;
-    }
-    to{
-        transform:translateX(8px) scaleY(1.05);
-        opacity:.55;
-    }
+    0%,48%,100%{transform:scaleY(1);}
+    50%{transform:scaleY(0.1);}
 }
 </style>
 </head>
 
 <body>
 
-<h1>🚀 Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+<h1>🐶 Perrito Surf Animado</h1>
 
 <div class="scene">
 
-<svg viewBox="0 0 400 430" width="100%" height="100%">
+<svg viewBox="0 0 400 420">
 
-<defs>
+<!-- AGUA -->
+<path d="M20 360 Q120 330 200 360 T380 360 L380 420 L20 420 Z"
+fill="#ffffff" opacity=".2"/>
 
-<radialGradient id="skin" cx="45%" cy="30%">
-<stop offset="0%" stop-color="#ffffff"/>
-<stop offset="45%" stop-color="#f7f0df"/>
-<stop offset="100%" stop-color="#d6b67f"/>
-</radialGradient>
+<g class="dog">
 
-<radialGradient id="bellyGrad">
-<stop offset="0%" stop-color="#ffffff"/>
-<stop offset="100%" stop-color="#eadab3"/>
-</radialGradient>
+<!-- SOMBRA -->
+<ellipse class="shadow" cx="200" cy="340" rx="80" ry="18" fill="#000"/>
 
-<linearGradient id="boardGrad">
-<stop offset="0%" stop-color="#ff4d4d"/>
-<stop offset="50%" stop-color="#ff9f43"/>
-<stop offset="100%" stop-color="#ffe66d"/>
-</linearGradient>
-
-<filter id="blur">
-<feGaussianBlur stdDeviation="4"/>
-</filter>
-
-</defs>
-
-<!-- Agua -->
-<g class="water">
-<path d="M30 385 Q100 355 200 390 T370 375 L380 430 L20 430 Z"
-fill="#ffffff"
-opacity=".25"/>
-</g>
-
-<!-- Grupo completo -->
-<g class="surf-dog">
-
-<!-- sombra -->
-<ellipse class="shadow"
-cx="200"
-cy="365"
-rx="85"
-ry="16"
-fill="#000"
-filter="url(#blur)"/>
-
-<!-- tabla -->
+<!-- TABLA -->
 <g class="board">
-
-<ellipse
-cx="200"
-cy="345"
-rx="120"
-ry="18"
-fill="url(#boardGrad)"/>
-
-<ellipse
-cx="200"
-cy="340"
-rx="95"
-ry="6"
-fill="#fff"
-opacity=".25"/>
-
+<ellipse cx="200" cy="330" rx="120" ry="18" fill="#ff4d4d"/>
+<ellipse cx="200" cy="326" rx="90" ry="6" fill="#ffffff" opacity=".25"/>
 </g>
 
-<!-- patas -->
-<ellipse cx="155" cy="315" rx="15" ry="22" fill="#d0b180"/>
-<ellipse cx="245" cy="315" rx="15" ry="22" fill="url(#skin)"/>
+<!-- PATAS -->
+<ellipse cx="170" cy="300" rx="16" ry="18" fill="#d9b27c"/>
+<ellipse cx="230" cy="300" rx="16" ry="18" fill="#d9b27c"/>
 
-<!-- brazo izquierdo -->
-<g class="left-arm">
-<path
-d="M150 205 C120 190 105 165 115 145
-C130 125 155 160 150 205 Z"
-fill="url(#skin)"/>
+<!-- BRAZO IZQ -->
+<g class="armL">
+<path d="M160 210 C130 200 120 170 130 150
+C145 130 160 160 160 210 Z"
+fill="#f2d6a2"/>
 </g>
 
-<!-- brazo derecho -->
-<g class="right-arm">
-<path
-d="M250 205 C280 190 295 165 285 145
-C270 125 245 160 250 205 Z"
-fill="url(#skin)"/>
+<!-- BRAZO DER -->
+<g class="armR">
+<path d="M240 210 C270 200 280 170 270 150
+C255 130 240 160 240 210 Z"
+fill="#f2d6a2"/>
 </g>
 
-<!-- cuerpo -->
-<path
-d="M140 180
-C120 230 125 315 200 325
-C275 315 280 230 260 180
-Z"
-fill="url(#skin)"/>
+<!-- CUERPO -->
+<ellipse cx="200" cy="240" rx="70" ry="85" fill="#f2d6a2"/>
 
-<!-- barriga -->
-<g class="belly">
+<!-- BARRIGA -->
+<ellipse class="belly" cx="200" cy="260" rx="50" ry="65" fill="#fff1d6"/>
 
-<ellipse
-cx="200"
-cy="255"
-rx="55"
-ry="70"
-fill="url(#bellyGrad)"/>
+<!-- CABEZA -->
+<ellipse cx="200" cy="150" rx="75" ry="65" fill="#f2d6a2"/>
 
-</g>
+<!-- OREJAS -->
+<ellipse cx="140" cy="145" rx="18" ry="30" fill="#caa06a"/>
+<ellipse cx="260" cy="145" rx="18" ry="30" fill="#caa06a"/>
 
-<!-- cabeza -->
-<g>
+<!-- OJOS -->
+<ellipse class="eye" cx="175" cy="150" rx="8" ry="6" fill="#111"/>
+<ellipse class="eye" cx="225" cy="150" rx="8" ry="6" fill="#111"/>
 
-<ellipse
-cx="200"
-cy="145"
-rx="60"
-ry="48"
-fill="url(#skin)"/>
+<!-- NARIZ -->
+<ellipse cx="200" cy="165" rx="10" ry="7" fill="#2a2a2a"/>
 
-<!-- orejas -->
-<ellipse cx="145" cy="135" rx="15" ry="24" fill="#b99a66"/>
-<ellipse cx="255" cy="135" rx="15" ry="24" fill="#b99a66"/>
+<!-- HOCICO -->
+<ellipse cx="200" cy="180" rx="38" ry="22" fill="#ffe7c2"/>
 
-<!-- ojos -->
-<g class="eyes">
-
-<ellipse cx="176" cy="145" rx="8" ry="6" fill="#111"/>
-<circle cx="173" cy="143" r="1.5" fill="#fff"/>
-
-<ellipse cx="224" cy="145" rx="8" ry="6" fill="#111"/>
-<circle cx="221" cy="143" r="1.5" fill="#fff"/>
+<!-- BOCA -->
+<path d="M185 185 Q200 195 215 185"
+stroke="#a07c4f" stroke-width="2" fill="none"/>
 
 </g>
-
-<!-- nariz -->
-<ellipse
-cx="200"
-cy="160"
-rx="10"
-ry="7"
-fill="#222"/>
-
-<!-- hocico -->
-<ellipse
-cx="200"
-cy="175"
-rx="35"
-ry="18"
-fill="#f6edd7"/>
-
-<line
-x1="200"
-y1="165"
-x2="200"
-y2="180"
-stroke="#a78d64"
-stroke-width="2"/>
-
-<path
-d="M185 180 Q200 190 215 180"
-stroke="#a78d64"
-stroke-width="2"
-fill="none"
-stroke-linecap="round"/>
-
-</g>
-
-</g>
-
 </svg>
 
 </div>
