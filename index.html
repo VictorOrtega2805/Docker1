@@ -94,3 +94,159 @@
             transform-style: preserve-3d;
             transform: translate3d(-25px, -70px, 65px); /* Al frente y arriba */
         }
+        .head-cube {
+            width: 50px; height: 50px;
+            transform-style: preserve-3d;
+        }
+        .head-cube .front { width: 50px; height: 50px; background: #dcdcdc; transform: translateZ(25px); }
+        .head-cube .back  { width: 50px; height: 50px; background: #b5b5b5; transform: rotateY(180deg) translateZ(25px); }
+        .head-cube .top   { width: 50px; height: 50px; background: #e8e8e8; transform: rotateX(90deg) translateZ(25px); }
+        .head-cube .left  { width: 50px; height: 50px; background: #cdcdcd; transform: rotateY(-90deg) translateZ(25px); }
+        .head-cube .right { width: 50px; height: 50px; background: #c4c4c4; transform: rotateY(90deg) translateZ(25px); }
+
+        /* Ojos pixelados en la cara frontal de la cabeza */
+        .head-cube .front::after {
+            content: ''; position: absolute;
+            top: 20px; width: 8px; height: 8px;
+            background: #1a1a1a; box-shadow: 0 0 0 2px #fff, 30px 0 #1a1a1a, 30px 0 0 2px #fff;
+            left: 6px;
+        }
+
+        /* --- CASCO DE DIAMANTE RETRO --- */
+        .helmet-cube {
+            width: 56px; height: 35px;
+            transform: translate3d(-3px, -5px, 3px);
+            transform-style: preserve-3d;
+        }
+        .helmet-cube .front { width: 56px; height: 35px; background: rgba(85, 255, 255, 0.85); border: 2px solid #00aaaa; transform: translateZ(28px); }
+        .helmet-cube .top   { width: 56px; height: 56px; background: rgba(130, 255, 255, 0.9); border: 2px solid #00aaaa; transform: rotateX(90deg) translateZ(28px); }
+        .helmet-cube .left  { width: 56px; height: 35px; background: rgba(0, 210, 210, 0.85); border: 2px solid #008888; transform: rotateY(-90deg) translateZ(28px); }
+        .helmet-cube .right { width: 56px; height: 35px; background: rgba(0, 170, 170, 0.85); border: 2px solid #006666; transform: rotateY(90deg) translateZ(28px); }
+
+        /* --- HOCICO Y ESPADA EN LA BOCA --- */
+        .muzzle-cube {
+            width: 24px; height: 20px;
+            transform: translate3d(13px, 25px, 30px);
+            transform-style: preserve-3d;
+        }
+        .muzzle-cube .front { width: 24px; height: 20px; background: #ededed; transform: translateZ(10px); }
+        .muzzle-cube .front::after { content: ''; position: absolute; width: 10px; height: 6px; background: #222; top: 0; left: 7px; } /* Nariz */
+        .muzzle-cube .top   { width: 24px; height: 20px; background: #f5f5f5; transform: rotateX(90deg) translateZ(10px); }
+        .muzzle-cube .left  { width: 20px; height: 20px; background: #d6d6d6; transform: rotateY(-90deg) translateZ(12px); }
+        .muzzle-cube .right { width: 20px; height: 20px; background: #cccccc; transform: rotateY(90deg) translateZ(12px); }
+
+        /* ESPADA DE DIAMANTE EN EL HOCICO */
+        .sword-in-mouth {
+            position: absolute;
+            width: 10px; height: 80px;
+            background: #55ffff; border: 2px solid #00aaaa;
+            transform: translate3d(20px, 30px, 40px) rotateZ(75deg) rotateX(15deg);
+            box-shadow: 0 0 8px rgba(85, 255, 255, 0.8);
+        }
+        .sword-in-mouth::after {
+            content: ''; position: absolute;
+            width: 16px; height: 16px; background: #704020; border: 2px solid #444;
+            bottom: -16px; left: -5px;
+        }
+
+        /* --- COLLAR ROJO ORIGINAL --- */
+        .collar-cube {
+            width: 74px; height: 12px; depth: 74px;
+            transform: translate3d(-37px, -34px, 50px);
+        }
+        .collar-cube .front { width: 74px; height: 12px; background: #dd2222; transform: translateZ(37px); }
+        .collar-cube .left  { width: 74px; height: 12px; background: #bb1111; transform: rotateY(-90deg) translateZ(37px); }
+        .collar-cube .right { width: 74px; height: 12px; background: #aa0000; transform: rotateY(90deg) translateZ(37px); }
+
+        /* --- PATAS DELANTERAS Y TRASERAS --- */
+        .leg-cube { width: 16px; height: 55px; }
+        .leg-cube .front { width: 16px; height: 55px; background: #d0d0d0; transform: translateZ(8px); }
+        .leg-cube .top   { width: 16px; height: 16px; background: #e0e0e0; transform: rotateX(90deg) translateZ(8px); }
+        .leg-cube .left  { width: 16px; height: 55px; background: #c5c5c5; transform: rotateY(-90deg) translateZ(8px); }
+        .leg-cube .right { width: 16px; height: 55px; background: #b8b8b8; transform: rotateY(90deg) translateZ(8px); }
+
+        /* Posicionamiento de las 4 patas */
+        .p1 { transform: translate3d(-30px, 35px, 40px); }
+        .p2 { transform: translate3d(14px, 35px, 40px); }
+        .p3 { transform: translate3d(-30px, 35px, -45px); }
+        .p4 { transform: translate3d(14px, 35px, -45px); }
+
+
+        /* --- COLA CON ANIMACIÓN DE MENEADO EXCLUSIVO --- */
+        .tail-container {
+            position: absolute;
+            transform-style: preserve-3d;
+            transform: translate3d(-8px, -25px, -65px); /* Trasera */
+            transform-origin: top center;
+            animation: tailWagOnly 0.35s ease-in-out infinite alternate; /* Animación rápida y feliz */
+        }
+        .tail-cube {
+            width: 16px; height: 45px;
+            transform-style: preserve-3d;
+        }
+        .tail-cube .front { width: 16px; height: 45px; background: #b8b8b8; transform: translateZ(8px); }
+        .tail-cube .back  { width: 16px; height: 45px; background: #9e9e9e; transform: rotateY(180deg) translateZ(8px); }
+        .tail-cube .top   { width: 16px; height: 16px; background: #cccccc; transform: rotateX(90deg) translateZ(8px); }
+        .tail-cube .left  { width: 16px; height: 45px; background: #aeaeae; transform: rotateY(-90deg) translateZ(8px); }
+        .tail-cube .right { width: 16px; height: 45px; background: #a5a5a5; transform: rotateY(90deg) translateZ(8px); }
+
+
+        /* --- UNICA ANIMACIÓN: MENEITO DE COLA --- */
+        @keyframes tailWagOnly {
+            0% { transform: translate3d(-8px, -25px, -65px) rotateY(-25deg) rotateX(15deg); }
+            100% { transform: translate3d(-8px, -25px, -65px) rotateY(25deg) rotateX(15deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+        
+        <div class="scene">
+            <div class="wolf-isometric">
+                
+                <div class="cube body-cube">
+                    <div class="face front"></div> <div class="face back"></div>
+                    <div class="face top"></div>   <div class="face bottom"></div>
+                    <div class="face left"></div>  <div class="face right"></div>
+                </div>
+
+                <div class="cube collar-cube">
+                    <div class="face front"></div> <div class="face left"></div> <div class="face right"></div>
+                </div>
+
+                <div class="head-group">
+                    <div class="cube head-cube">
+                        <div class="face front"></div> <div class="face back"></div>
+                        <div class="face top"></div>   <div class="face left"></div> <div class="face right"></div>
+                    </div>
+                    <div class="cube helmet-cube">
+                        <div class="face front"></div> <div class="face top"></div>
+                        <div class="face left"></div>  <div class="face right"></div>
+                    </div>
+                    <div class="cube muzzle-cube">
+                        <div class="face front"></div> <div class="face top"></div>
+                        <div class="face left"></div>  <div class="face right"></div>
+                    </div>
+                    <div class="sword-in-mouth"></div>
+                </div>
+
+                <div class="cube leg-cube p1"><div class="face front"></div><div class="face top"></div><div class="face left"></div><div class="face right"></div></div>
+                <div class="cube leg-cube p2"><div class="face front"></div><div class="face top"></div><div class="face left"></div><div class="face right"></div></div>
+                <div class="cube leg-cube p3"><div class="face front"></div><div class="face top"></div><div class="face left"></div><div class="face right"></div></div>
+                <div class="cube leg-cube p4"><div class="face front"></div><div class="face top"></div><div class="face left"></div><div class="face right"></div></div>
+
+                <div class="tail-container">
+                    <div class="cube tail-cube">
+                        <div class="face front"></div> <div class="face back"></div>
+                        <div class="face top"></div>   <div class="face left"></div> <div class="face right"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
