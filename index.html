@@ -5,307 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker de Victor Manuel Ortega Urbano</title>
     <style>
-        /* Fondo azul pixelado estilo Minecraft */
+        /* Fondo azul con cuadrícula limpia idéntica a tu diseño */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
-            background-color: #114194;
+            background-color: #0b429c;
             background-image: 
-                linear-gradient(rgba(0,0,0,0.1) 2px, transparent 2px),
-                linear-gradient(90deg, rgba(0,0,0,0.1) 2px, transparent 2px);
-            background-size: 16px 16px; /* Textura de bloques pixel */
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px; /* Cuadrícula del fondo */
             color: #ffffff;
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 90vh;
-            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        /* Título Dorado Metálico en 3D con sombra */
+        /* Contenedor principal centrado */
+        .container {
+            max-width: 1000px;
+            padding: 20px;
+        }
+
+        /* Título Dorado en 3D con sombras idéntico a la imagen */
         h1 { 
-            color: #ffd700;
+            color: #ffcc00;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 40px;
             text-shadow: 
-                3px 3px 0px #7a5f00, 
-                5px 5px 0px rgba(0, 0, 0, 0.7);
-            font-size: 2.8rem;
-            max-width: 900px;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
+                3px 3px 0px #b38600, 
+                5px 5px 5px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            line-height: 1.3;
         }
 
-        /* --- ESCENA PRINCIPAL --- */
-        .scene {
-            display: block;
-            position: relative;
-            width: 350px;
-            height: 320px;
-            margin-top: 20px;
+        /* Cohete emoji al inicio del título */
+        .rocket {
+            margin-right: 15px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
         }
 
-        /* --- ANIMACIÓN STEVE --- */
-        .steve {
-            position: absolute;
-            left: 160px;
-            bottom: 20px;
-            width: 110px;
-            height: 220px;
-            animation: steveFloat 3.5s ease-in-out infinite;
-        }
-
-        /* Cabeza de Steve */
-        .head {
-            width: 50px;
-            height: 50px;
-            background-color: #c49a6c;
-            position: absolute;
-            left: 30px;
-            top: 0;
-            box-shadow: inset -6px -6px 0px #a1764b;
-        }
-        /* Pelo */
-        .head::before {
-            content: '';
-            position: absolute;
+        /* Imagen central de Steve y el lobo en HD */
+        .minecraft-img {
+            max-width: 500px;
             width: 100%;
-            height: 14px;
-            background-color: #4a2d11;
-            top: 0; left: 0;
-        }
-        /* Ojos Morados estilo Steve */
-        .head::after {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 4px;
-            background-color: #ffffff;
-            box-shadow: 4px 0px #4c11a8, 22px 0px #ffffff, 26px 0px #4c11a8;
-            top: 26px; left: 6px;
-        }
-
-        /* Torso Clásico */
-        .torso {
-            width: 50px;
-            height: 72px;
-            background-color: #00a896;
-            position: absolute;
-            left: 30px;
-            top: 50px;
-            box-shadow: inset -6px -4px 0px #028074;
-        }
-
-        /* Brazo Izquierdo (Normal) */
-        .arm.left {
-            width: 24px;
-            height: 72px;
-            background-color: #009384;
-            position: absolute;
-            left: 6px;
-            top: 50px;
-            transform-origin: top center;
-            animation: swingArmLeft 3.5s ease-in-out infinite alternate;
-        }
-        .arm.left::after {
-            content: ''; position: absolute; bottom: 0; width: 100%; height: 16px; background-color: #c49a6c;
-        }
-
-        /* Brazo Derecho (Sosteniendo Espada) */
-        .arm.right {
-            width: 24px;
-            height: 72px;
-            background-color: #00c2ad;
-            position: absolute;
-            left: 80px;
-            top: 50px;
-            transform-origin: top center;
-            transform: rotate(-35deg); /* Levantado para la espada */
-            animation: swingArmRight 1.5s ease-in-out infinite alternate;
-        }
-        .arm.right::after {
-            content: ''; position: absolute; bottom: 0; width: 100%; height: 16px; background-color: #c49a6c;
-        }
-
-        /* --- ESPADA DE DIAMANTE --- */
-        .diamond-sword {
-            position: absolute;
-            width: 12px;
-            height: 90px;
-            background-color: #55ffff; /* Filo Diamante */
-            border: 4px solid #00aaaa;
-            left: 6px;
-            bottom: 40px;
-            transform: rotate(25deg);
-            box-shadow: 0 0 10px rgba(85, 255, 255, 0.6);
-        }
-        /* Mango de la Espada */
-        .diamond-sword::after {
-            content: '';
-            position: absolute;
-            width: 12px;
-            height: 20px;
-            background-color: #704020; /* Madera */
-            border-top: 4px solid #444;
-            bottom: -24px;
-            left: -4px;
-        }
-
-        /* Piernas */
-        .leg {
-            width: 24px;
-            height: 76px;
-            background-color: #3c44aa;
-            position: absolute;
-            top: 122px;
-        }
-        .leg.left { left: 30px; }
-        .leg.right { left: 56px; background-color: #2e3487; }
-        .leg::after { content: ''; position: absolute; bottom: 0; width: 100%; height: 12px; background-color: #444; }
-
-
-        /* --- ANIMACIÓN LOBO (WOLF) --- */
-        .wolf {
-            position: absolute;
-            left: 30px;
-            bottom: 20px;
-            width: 100px;
-            height: 120px;
-            animation: wolfBreathing 2.8s ease-in-out infinite;
-        }
-
-        /* Cabeza de Lobo */
-        .wolf-head {
-            width: 36px;
-            height: 36px;
-            background-color: #d1d1d1;
-            position: absolute;
-            right: 10px;
-            top: 15px;
-            box-shadow: -4px 4px 0px #b5b5b5;
-        }
-        /* Orejas de Lobo */
-        .wolf-head::before {
-            content: '';
-            position: absolute;
-            width: 8px;
-            height: 10px;
-            background-color: #b5b5b5;
-            top: -10px; left: 4px;
-            box-shadow: 20px 0px 0px #d1d1d1;
-        }
-        /* Hocico y Ojos */
-        .wolf-head::after {
-            content: '';
-            position: absolute;
-            width: 14px;
-            height: 12px;
-            background-color: #dfdfdf; /* Hocico */
-            box-shadow: 4px 2px 0 #222; /* Nariz negra */
-            bottom: 0; right: -8px;
-        }
-
-        /* Cuerpo del Lobo */
-        .wolf-body {
-            width: 65px;
-            height: 46px;
-            background-color: #d1d1d1;
-            position: absolute;
-            left: 10px;
-            top: 35px;
-            box-shadow: inset 0 -6px 0px #b5b5b5;
-        }
-
-        /* Collar Morado Solicitado (Lobo Domesticado) */
-        .wolf-collar {
-            width: 14px;
-            height: 46px;
-            background-color: #7a1fa2; /* Color morado */
-            position: absolute;
-            right: 22px;
-            top: 35px;
-            z-index: 2;
-        }
-
-        /* Cola del Lobo (Feliz/Moviéndose) */
-        .wolf-tail {
-            width: 12px;
-            height: 30px;
-            background-color: #b5b5b5;
-            position: absolute;
-            left: -2px;
-            top: 35px;
-            transform-origin: top center;
-            animation: wagTail 0.6s ease-in-out infinite alternate;
-        }
-
-        /* Patas del Lobo */
-        .wolf-leg {
-            width: 12px;
-            height: 40px;
-            background-color: #b5b5b5;
-            position: absolute;
-            top: 81px;
-        }
-        .wolf-leg.f-left { left: 15px; }
-        .wolf-leg.f-right { left: 32px; background-color: #c4c4c4; }
-        .wolf-leg.b-left { left: 52px; }
-        .wolf-leg.b-right { left: 65px; background-color: #c4c4c4; }
-
-
-        /* --- KEYFRAMES DE ANIMACIONES --- */
-        @keyframes steveFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        @keyframes swingArmRight {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(-50deg); }
-        }
-        @keyframes swingArmLeft {
-            0% { transform: rotate(-10deg); }
-            100% { transform: rotate(15deg); }
-        }
-        @keyframes wolfBreathing {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03) translateY(-2px); }
-        }
-        @keyframes wagTail {
-            0% { transform: rotate(-15deg); }
-            100% { transform: rotate(35deg); }
+            height: auto;
+            margin-top: 10px;
+            filter: drop-shadow(0px 15px 20px rgba(0, 0, 0, 0.7));
         }
     </style>
 </head>
 <body>
 
-    <h1>🚀 Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
-    
-    <div class="scene">
-        <!-- LOBO CON COLLAR MORADO -->
-        <div class="wolf">
-            <div class="wolf-tail"></div>
-            <div class="wolf-body"></div>
-            <div class="wolf-collar"></div>
-            <div class="wolf-head"></div>
-            <div class="wolf-leg f-left"></div>
-            <div class="wolf-leg f-right"></div>
-            <div class="wolf-leg b-left"></div>
-            <div class="wolf-leg b-right"></div>
-        </div>
-
-        <!-- STEVE CON ESPADA DE DIAMANTE -->
-        <div class="steve">
-            <div class="head"></div>
-            <div class="arm left"></div>
-            <div class="torso"></div>
-            <div class="arm right">
-                <!-- Espada en la mano derecha -->
-                <div class="diamond-sword"></div>
-            </div>
-            <div class="leg left"></div>
-            <div class="leg right"></div>
-        </div>
+    <div class="container">
+        <!-- Título exacto con el cohete -->
+        <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+        
+        <br>
+        
+        <!-- Imagen de los personajes en alta calidad -->
+        <img class="minecraft-img" src="https://i.ibb.co/3mSgYv9/render-minecraft.png" alt="Steve and Wolf">
     </div>
 
 </body>
