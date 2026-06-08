@@ -1,0 +1,11 @@
+# Usamos una imagen ligera de Nginx
+FROM nginx:alpine
+
+# Copiamos nuestra página web a la carpeta que Nginx usa por defecto
+COPY index.html /usr/share/nginx/html/
+
+# Exponemos el puerto 80 (el que usa Nginx por defecto)
+EXPOSE 80
+
+# Arrancamos Nginx
+CMD ["nginx", "-g", "daemon off;"]
