@@ -1,187 +1,274 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Perrito Surf Animado</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker de Victor Manuel Ortega Urbano</title>
+    <style>
+        /* Fondo azul con cuadrícula limpia */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            text-align: center; 
+            background-color: #0b429c;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
 
-<style>
-body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    background: radial-gradient(circle at center,#1b3b5f,#0b1b2e);
-    font-family:Arial;
-    overflow:hidden;
-}
+        .container {
+            max-width: 1000px;
+            padding: 20px;
+        }
 
-h1{
-    color:#ffd36b;
-    margin-bottom:20px;
-    text-shadow:2px 2px 10px rgba(0,0,0,.6);
-}
+        /* Título Dorado en 3D */
+        h1 { 
+            color: #ffcc00;
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 
+                3px 3px 0px #b38600, 
+                5px 5px 5px rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            line-height: 1.3;
+        }
 
-.scene{
-    width:420px;
-    height:420px;
-}
+        .rocket {
+            margin-right: 15px;
+            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+        }
 
-.dog{
-    transform-origin:200px 300px;
-    animation:float 3.8s ease-in-out infinite;
-    filter:drop-shadow(0 20px 15px rgba(0,0,0,.4));
-}
+        /* --- CONTENEDOR DEL PERRO REALISTA DE FRENTE --- */
+        .dog-card {
+            width: 280px;
+            height: 300px;
+            margin: 0 auto;
+            position: relative;
+        }
 
-/* TABLA */
-.board{
-    animation:board 3.8s ease-in-out infinite;
-    transform-origin:200px 320px;
-}
+        /* Animación de respiración en todo el cuerpo */
+        .puppy {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            animation: breathe 3s ease-in-out infinite;
+        }
 
-/* SOMBRA */
-.shadow{
-    animation:shadow 3.8s ease-in-out infinite;
-    transform-origin:center;
-}
+        /* OREJAS CON ANIMACIÓN DE MOVIMIENTO SUTIL */
+        .ear {
+            position: absolute;
+            top: 25px;
+            width: 55px;
+            height: 85px;
+            background-color: #e58e26; /* Color café claro / naranja */
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+        }
+        .ear-inner {
+            position: absolute;
+            top: 15px;
+            left: 10px;
+            width: 35px;
+            height: 60px;
+            background-color: #f8a5c2; /* Rosita interior */
+            border-radius: 50% 50% 40% 40% / 60% 60% 40% 40%;
+        }
+        .ear.left {
+            left: 35px;
+            transform: rotate(-18deg);
+            transform-origin: bottom right;
+            animation: twitchLeft 4s ease-in-out infinite;
+        }
+        .ear.right {
+            right: 35px;
+            transform: rotate(18deg);
+            transform-origin: bottom left;
+            animation: twitchRight 4s ease-in-out infinite;
+        }
 
-/* BARRIGA RESPIRA */
-.belly{
-    animation:breath 2.8s ease-in-out infinite;
-    transform-origin:center;
-}
+        /* CABEZA DEL PERRITO */
+        .head {
+            position: absolute;
+            top: 75px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 125px;
+            background-color: #f3a64b;
+            border-radius: 70px 70px 65px 65px;
+            box-shadow: 0 8px 0px rgba(0,0,0,0.1);
+            z-index: 5;
+        }
 
-/* BRAZOS */
-.armL{
-    transform-origin:160px 210px;
-    animation:armL 2s ease-in-out infinite;
-}
-.armR{
-    transform-origin:240px 210px;
-    animation:armR 2s ease-in-out infinite;
-}
+        /* Manchas blancas realistas en la cara */
+        .face-blaze {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 55px;
+            height: 95px;
+            background-color: #ffffff;
+            border-radius: 30px 30px 0 0;
+        }
 
-/* OJOS (IMPORTANTE: FIX PARPADEO) */
-.eye{
-    transform-box:fill-box;
-    transform-origin:center;
-    animation:blink 5s infinite;
-}
+        /* OJOS CON ANIMACIÓN DE PARPADEO */
+        .eye {
+            position: absolute;
+            top: 50px;
+            width: 18px;
+            height: 18px;
+            background-color: #2c3e50;
+            border-radius: 50%;
+            animation: blink 5s linear infinite;
+        }
+        /* Brillo interno del ojo */
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 5px;
+            height: 5px;
+            background-color: #ffffff;
+            border-radius: 50%;
+        }
+        .eye.left { left: 28px; }
+        .eye.right { right: 28px; }
 
-@keyframes float{
-    0%{transform:translateY(0) rotate(-3deg);}
-    50%{transform:translateY(-18px) rotate(3deg);}
-    100%{transform:translateY(0) rotate(-3deg);}
-}
+        /* HOCICO, NARIZ Y LENGUITA */
+        .snout {
+            position: absolute;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 65px;
+            height: 45px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            z-index: 6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .nose {
+            width: 24px;
+            height: 15px;
+            background-color: #1e272e;
+            border-radius: 10px 10px 14px 14px;
+            margin-top: 5px;
+        }
+        /* Pequeña boca feliz */
+        .mouth {
+            width: 20px;
+            height: 8px;
+            border-bottom: 3px solid #1e272e;
+            border-radius: 0 0 10px 10px;
+            margin-top: 2px;
+        }
 
-@keyframes board{
-    0%{transform:translateY(0) rotate(-2deg);}
-    50%{transform:translateY(6px) rotate(2deg);}
-    100%{transform:translateY(0) rotate(-2deg);}
-}
+        /* CUERPO SENTADO DE FRENTE */
+        .body {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 130px;
+            height: 120px;
+            background-color: #e58e26;
+            border-radius: 50px 50px 40px 40px;
+            z-index: 2;
+        }
+        /* Pecho blanco afelpado */
+        .chest {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 75px;
+            height: 90px;
+            background-color: #ffffff;
+            border-radius: 40px 40px 30px 30px;
+        }
 
-@keyframes shadow{
-    0%{transform:scale(1);opacity:.35;}
-    50%{transform:scale(.6);opacity:.15;}
-    100%{transform:scale(1);opacity:.35;}
-}
+        /* PATAS DELANTERAS SIMÉTRICAS */
+        .paw {
+            position: absolute;
+            bottom: 5px;
+            width: 32px;
+            height: 55px;
+            background-color: #ffffff;
+            border-radius: 15px 15px 12px 12px;
+            box-shadow: inset 0 -6px 0px #e1e8ed, 0 4px 6px rgba(0,0,0,0.15);
+            z-index: 4;
+        }
+        .paw.left { left: 65px; }
+        .paw.right { right: 65px; }
 
-@keyframes breath{
-    0%,100%{transform:scale(1);}
-    50%{transform:scale(1.04);}
-}
+        /* --- KEYFRAMES DE LAS ANIMACIONES --- */
+        /* 1. Respiración del perrito */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1) translateY(0); }
+            50% { transform: scale(1.015) translateY(-3px); }
+        }
 
-@keyframes armL{
-    0%,100%{transform:rotate(-10deg);}
-    50%{transform:rotate(18deg);}
-}
+        /* 2. Parpadeo realista */
+        @keyframes blink {
+            0%, 48%, 52%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(0.1); }
+        }
 
-@keyframes armR{
-    0%,100%{transform:rotate(10deg);}
-    50%{transform:rotate(-18deg);}
-}
+        /* 3. Movimiento de oreja izquierda */
+        @keyframes twitchLeft {
+            0%, 85%, 95%, 100% { transform: rotate(-18deg); }
+            90% { transform: rotate(-24deg); }
+        }
 
-@keyframes blink{
-    0%,48%,100%{transform:scaleY(1);}
-    50%{transform:scaleY(0.1);}
-}
-</style>
+        /* 4. Movimiento de oreja derecha */
+        @keyframes twitchRight {
+            0%, 80%, 90%, 100% { transform: rotate(18deg); }
+            85% { transform: rotate(24deg); }
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>🐶 Perrito Surf Animado</h1>
+    <div class="container">
+        <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
+        
+        <div class="dog-card">
+            <div class="puppy">
+                <div class="ear left"><div class="ear-inner"></div></div>
+                <div class="ear right"><div class="ear-inner"></div></div>
+                
+                <div class="head">
+                    <div class="face-blaze"></div>
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="snout">
+                        <div class="nose"></div>
+                        <div class="mouth"></div>
+                    </div>
+                </div>
+                
+                <div class="body">
+                    <div class="chest"></div>
+                </div>
 
-<div class="scene">
-
-<svg viewBox="0 0 400 420">
-
-<!-- AGUA -->
-<path d="M20 360 Q120 330 200 360 T380 360 L380 420 L20 420 Z"
-fill="#ffffff" opacity=".2"/>
-
-<g class="dog">
-
-<!-- SOMBRA -->
-<ellipse class="shadow" cx="200" cy="340" rx="80" ry="18" fill="#000"/>
-
-<!-- TABLA -->
-<g class="board">
-<ellipse cx="200" cy="330" rx="120" ry="18" fill="#ff4d4d"/>
-<ellipse cx="200" cy="326" rx="90" ry="6" fill="#ffffff" opacity=".25"/>
-</g>
-
-<!-- PATAS -->
-<ellipse cx="170" cy="300" rx="16" ry="18" fill="#d9b27c"/>
-<ellipse cx="230" cy="300" rx="16" ry="18" fill="#d9b27c"/>
-
-<!-- BRAZO IZQ -->
-<g class="armL">
-<path d="M160 210 C130 200 120 170 130 150
-C145 130 160 160 160 210 Z"
-fill="#f2d6a2"/>
-</g>
-
-<!-- BRAZO DER -->
-<g class="armR">
-<path d="M240 210 C270 200 280 170 270 150
-C255 130 240 160 240 210 Z"
-fill="#f2d6a2"/>
-</g>
-
-<!-- CUERPO -->
-<ellipse cx="200" cy="240" rx="70" ry="85" fill="#f2d6a2"/>
-
-<!-- BARRIGA -->
-<ellipse class="belly" cx="200" cy="260" rx="50" ry="65" fill="#fff1d6"/>
-
-<!-- CABEZA -->
-<ellipse cx="200" cy="150" rx="75" ry="65" fill="#f2d6a2"/>
-
-<!-- OREJAS -->
-<ellipse cx="140" cy="145" rx="18" ry="30" fill="#caa06a"/>
-<ellipse cx="260" cy="145" rx="18" ry="30" fill="#caa06a"/>
-
-<!-- OJOS -->
-<ellipse class="eye" cx="175" cy="150" rx="8" ry="6" fill="#111"/>
-<ellipse class="eye" cx="225" cy="150" rx="8" ry="6" fill="#111"/>
-
-<!-- NARIZ -->
-<ellipse cx="200" cy="165" rx="10" ry="7" fill="#2a2a2a"/>
-
-<!-- HOCICO -->
-<ellipse cx="200" cy="180" rx="38" ry="22" fill="#ffe7c2"/>
-
-<!-- BOCA -->
-<path d="M185 185 Q200 195 215 185"
-stroke="#a07c4f" stroke-width="2" fill="none"/>
-
-</g>
-</svg>
-
-</div>
+                <div class="paw left"></div>
+                <div class="paw right"></div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
