@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker de Victor Manuel Ortega Urbano</title>
     <style>
-        /* Fondo degradado tropical inspirado en tu imagen */
+        /* Fondo oceánico profundo */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
-            background: linear-gradient(135deg, #0b429c 0%, #1e3c72 50%, #2a5298 100%);
+            background: radial-gradient(circle at center, #1b4f72 0%, #113047 70%, #081d2c 100%);
             color: #ffffff;
             margin: 0;
             padding: 0;
@@ -29,207 +29,76 @@
             align-items: center;
         }
 
-        /* Título Dorado en 3D */
+        /* Título Dorado Metálico en 3D */
         h1 { 
             color: #ffcc00;
             font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
             text-shadow: 
                 3px 3px 0px #b38600, 
-                5px 5px 5px rgba(0, 0, 0, 0.6);
+                5px 5px 10px rgba(0, 0, 0, 0.8);
             display: inline-block;
             line-height: 1.3;
         }
 
         .rocket {
             margin-right: 15px;
-            filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
+            filter: drop-shadow(3px 3px 3px rgba(0,0,0,0.6));
         }
 
-        /* --- ESCENA DEL PERRITO SURFISTA --- */
-        .surf-scene {
+        /* Contenedor de la escena */
+        .scene-container {
+            width: 380px;
+            height: 420px;
             position: relative;
-            width: 300px;
-            height: 350px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
         }
 
-        /* ANIMACIÓN 1: El balanceo de la tabla de surf sobre las olas */
-        .surfboard {
-            width: 220px;
-            height: 24px;
-            background: linear-gradient(to right, #ff4757, #ff6b81, #ffa502);
-            border-radius: 50% 50% 40% 40% / 100% 100% 30% 30%;
-            box-shadow: 0 12px 20px rgba(0,0,0,0.4), inset 0 -4px 0 rgba(0,0,0,0.2);
-            position: relative;
-            z-index: 1;
-            animation: floatBoard 2s ease-in-out infinite alternate;
-        }
-
-        /* ANIMACIÓN 2: El perrito bailando y disfrutando */
-        .dancing-puppy {
-            position: absolute;
-            bottom: 18px;
-            width: 140px;
-            height: 200px;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: puppyDance 1s ease-in-out infinite alternate;
-        }
-
-        /* CABEZA DEL PERRITO */
-        .head {
-            width: 85px;
-            height: 80px;
-            background-color: #f5f6fa; /* Color blanco/hueso afelpado */
-            border-radius: 50% 50% 45% 45%;
-            position: relative;
-            z-index: 5;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Orejas caídas y tiernas */
-        .ear {
-            position: absolute;
-            top: -5px;
-            width: 24px;
-            height: 45px;
-            background-color: #dcdde1;
-            border-radius: 50% 50% 40% 40%;
-        }
-        .ear.left { left: -5px; transform: rotate(-15deg); }
-        .ear.right { right: -5px; transform: rotate(15deg); }
-
-        /* Ojitos dormilones / felices de la imagen */
-        .eye {
-            position: absolute;
-            top: 38px;
-            width: 10px;
-            height: 6px;
-            background-color: #2f3640;
-            border-radius: 0 0 10px 10px; /* Curva hacia abajo de felicidad */
-        }
-        .eye.left { left: 22px; }
-        .eye.right { right: 22px; }
-
-        /* Hocico y nariz gordita */
-        .snout {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 42px;
-            height: 26px;
-            background-color: #f5f6fa;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .nose {
-            width: 14px;
-            height: 9px;
-            background-color: #2f3640;
-            border-radius: 6px 6px 8px 8px;
-            margin-top: 2px;
-        }
-        .smile {
-            width: 12px;
-            height: 6px;
-            border-bottom: 2px solid #2f3640;
-            border-radius: 0 0 8px 8px;
-            margin-top: 1px;
-        }
-
-        /* LA PANCITA REDONDA DE LA FOTO */
-        .chubby-body {
-            width: 95px;
-            height: 110px;
-            background-color: #f5f6fa;
-            border-radius: 50% 50% 42% 42% / 60% 60% 40% 40%;
-            margin-top: -15px;
-            position: relative;
-            z-index: 3;
-            box-shadow: inset 0 -12px 0 rgba(0,0,0,0.05);
-            display: flex;
-            justify-content: center;
-        }
-        /* El sombreado de la pancita tierna */
-        .belly-highlight {
-            width: 75px;
-            height: 85px;
-            background-color: #ffffff;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 5px;
-            opacity: 0.9;
-        }
-
-        /* BRAZOS BAILANDO (Animación independiente de ritmo) */
-        .arm {
-            position: absolute;
-            top: 20px;
-            width: 22px;
-            height: 45px;
-            background-color: #f5f6fa;
-            border-radius: 12px;
-            z-index: 4;
-        }
-        .arm.left {
-            left: -12px;
-            transform-origin: top center;
-            animation: waveLeftArm 0.5s ease-in-out infinite alternate;
-        }
-        .arm.right {
-            right: -12px;
-            transform-origin: top center;
-            animation: waveRightArm 0.5s ease-in-out infinite alternate-reverse;
-        }
-
-        /* Patitas cortas apoyadas firmes en la tabla */
-        .leg {
-            position: absolute;
-            bottom: -8px;
-            width: 26px;
-            height: 22px;
-            background-color: #dcdde1;
-            border-radius: 10px 10px 6px 6px;
-            z-index: 2;
-            box-shadow: 0 4px 4px rgba(0,0,0,0.2);
-        }
-        .leg.left { left: 18px; }
-        .leg.right { right: 18px; }
-
-        /* --- DETALLES DE ANIMACIÓN EN CSS --- */
+        /* --- ANIMACIONES REALISTAS --- */
         
-        /* Balanceo de la tabla de surf */
-        @keyframes floatBoard {
-            0% { transform: rotate(-5deg) translateY(0); }
-            100% { transform: rotate(5deg) translateY(-6px); }
+        /* El perrito se balancea por completo intentando no caerse */
+        .surf-dog {
+            transform-origin: 190px 330px;
+            animation: realisticBalance 2.6s ease-in-out infinite alternate;
+            filter: drop-shadow(0px 15px 12px rgba(0, 0, 0, 0.5));
         }
 
-        /* Balanceo coreográfico del cuerpo del perrito */
-        @keyframes puppyDance {
-            0% { transform: rotate(-4deg) translateX(-3px); }
-            100% { transform: rotate(4deg) translateX(3px); }
+        /* Los bracitos se mueven de arriba a abajo con suavidad para equilibrarse */
+        .left-arm {
+            transform-origin: 135px 210px;
+            animation: leftArmMove 1.3s ease-in-out infinite alternate;
         }
 
-        /* Brazo izquierdo sube y baja */
-        @keyframes waveLeftArm {
-            0% { transform: rotate(-40deg); }
-            100% { transform: rotate(30deg); }
+        .right-arm {
+            transform-origin: 245px 230px;
+            animation: rightArmMove 1.3s ease-in-out infinite alternate-reverse;
         }
 
-        /* Brazo derecho se mueve de forma invertida para dar ritmo */
-        @keyframes waveRightArm {
-            0% { transform: rotate(40deg); }
-            100% { transform: rotate(-30deg); }
+        /* Olas de espuma en el fondo */
+        .wave-foam {
+            animation: foamWave 1s linear infinite;
+        }
+
+        @keyframes realisticBalance {
+            0% { transform: rotate(-6deg) translateY(0px); }
+            50% { transform: rotate(1deg) translateY(-4px); }
+            100% { transform: rotate(7deg) translateY(2px); }
+        }
+
+        @keyframes leftArmMove {
+            0% { transform: rotate(-25deg); }
+            100% { transform: rotate(15deg); }
+        }
+
+        @keyframes rightArmMove {
+            0% { transform: rotate(20deg); }
+            100% { transform: rotate(-20deg); }
+        }
+
+        @keyframes foamWave {
+            0% { transform: translateX(0px); opacity: 0.6; }
+            50% { opacity: 0.9; }
+            100% { transform: translateX(-15px); opacity: 0.6; }
         }
     </style>
 </head>
@@ -238,33 +107,137 @@
     <div class="container">
         <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
         
-        <div class="surf-scene">
-            
-            <div class="dancing-puppy">
-                <div class="ear left"></div>
-                <div class="ear right"></div>
+        <div class="scene-container">
+            <!-- SVG de Alta Fidelidad con Iluminación Realista -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 380 420" width="100%" height="100%">
                 
-                <div class="head">
-                    <div class="eye left"></div>
-                    <div class="eye right"></div>
-                    <div class="snout">
-                        <div class="nose"></div>
-                        <div class="smile"></div>
-                    </div>
-                </div>
-                
-                <div class="chubby-body">
-                    <div class="belly-highlight"></div>
-                    <div class="arm left"></div>
-                    <div class="arm right"></div>
-                </div>
+                <!-- DEFINICIÓN DE GRADIENTES Y MAPAS DE SOMBRAS -->
+                <defs>
+                    <!-- Piel base del perrito (Gradiente suave de luz real) -->
+                    <radialGradient id="skin" cx="45%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="60%" stop-color="#f2ebd9"/>
+                        <stop offset="100%" stop-color="#decfae"/>
+                    </radialGradient>
 
-                <div class="leg left"></div>
-                <div class="leg right"></div>
-            </div>
+                    <!-- Sombra profunda para pliegues y axilas -->
+                    <linearGradient id="skin-shadow" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#decfae"/>
+                        <stop offset="100%" stop-color="#bda77a"/>
+                    </linearGradient>
 
-            <div class="surfboard"></div>
-            
+                    <!-- Volumen esférico de la pancita gorda -->
+                    <radialGradient id="belly" cx="40%" cy="40%" r="55%">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="70%" stop-color="#fdfbf7"/>
+                        <stop offset="100%" stop-color="#e3d4b6"/>
+                    </radialGradient>
+
+                    <!-- Brillo húmedo de los ojos -->
+                    <radialGradient id="eye-glow" cx="35%" cy="35%" r="40%">
+                        <stop offset="0%" stop-color="#424949"/>
+                        <stop offset="40%" stop-color="#1c1f21"/>
+                        <stop offset="100%" stop-color="#0b0c0d"/>
+                    </radialGradient>
+
+                    <!-- Tabla de surf realista degradada -->
+                    <linearGradient id="surf" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#ff3838"/>
+                        <stop offset="40%" stop-color="#ff9f43"/>
+                        <stop offset="80%" stop-color="#fed330"/>
+                        <stop offset="100%" stop-color="#26de81"/>
+                    </linearGradient>
+                </defs>
+
+                <!-- EFECTO DE AGUA Y ESPUMA DETRÁS -->
+                <g class="wave-foam">
+                    <path d="M 40 370 Q 90 350 160 375 T 340 365 L 350 400 L 30 400 Z" fill="#ffffff" opacity="0.3"/>
+                    <path d="M 10 380 Q 80 365 180 385 T 370 375 L 370 410 L 10 410 Z" fill="#48dbfb" opacity="0.2"/>
+                </g>
+
+                <!-- --- GRUPO PRINCIPAL CON ANIMACIÓN INTEGRADA --- -->
+                <g class="surf-dog">
+                    
+                    <!-- 1. TABLA DE SURF CON REFLEJO -->
+                    <path d="M 60 340 C 100 325, 260 325, 310 345 C 325 352, 280 365, 185 365 C 90 365, 45 352, 60 340 Z" fill="url(#surf)"/>
+                    <path d="M 75 342 C 120 334, 250 334, 295 346 C 240 354, 130 354, 75 342 Z" fill="#ffffff" opacity="0.25"/> <!-- Brillo superficie -->
+
+                    <!-- 2. PATAS TRASERAS (Apoyadas firmes) -->
+                    <!-- Izquierda -->
+                    <path d="M 140 310 C 130 310, 125 335, 140 342 C 155 345, 165 325, 160 310 Z" fill="url(#skin-shadow)"/>
+                    <ellipse cx="143" cy="338" rx="8" ry="5" fill="#decfae"/>
+                    <!-- Derecha -->
+                    <path d="M 210 315 C 205 315, 200 338, 215 344 C 230 346, 240 328, 235 315 Z" fill="url(#skin)"/>
+                    <ellipse cx="222" cy="341" rx="9" ry="5" fill="#cbd4cf" opacity="0.3"/>
+
+                    <!-- 3. CUERPO CORpulento Y PANCITA GORDA -->
+                    <!-- Sombra base del cuerpo -->
+                    <path d="M 130 210 C 110 260, 120 320, 185 325 C 250 320, 260 260, 245 210 Z" fill="url(#skin-shadow)"/>
+                    <!-- Masa muscular/grasa real -->
+                    <path d="M 135 210 C 115 250, 125 315, 185 320 C 245 315, 255 250, 240 210 Z" fill="url(#skin)"/>
+                    <!-- LA GRAN PANCITA REDONDA DE LA FOTO -->
+                    <path d="M 142 225 C 125 265, 135 315, 185 318 C 235 315, 245 265, 228 225 C 210 205, 160 205, 142 225 Z" fill="url(#belly)"/>
+                    <!-- Ombligo / pliegue de la pancita sutil -->
+                    <path d="M 180 285 Q 185 290 190 285" stroke="#bda77a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                    <!-- 4. BRAZO IZQUIERDO (ALZADO BAILANDO) -->
+                    <g class="left-arm">
+                        <path d="M 135 210 C 110 210, 100 170, 115 155 C 130 140, 145 175, 140 210 Z" fill="url(#skin)"/>
+                        <!-- Almohadilla rosa realista de la pata -->
+                        <ellipse cx="116" cy="162" rx="5" ry="7" fill="#ffb8b8" transform="rotate(-20 116 162)"/>
+                        <circle cx="110" cy="152" r="2" fill="#ffb8b8"/>
+                        <circle cx="116" cy="150" r="2" fill="#ffb8b8"/>
+                        <circle cx="122" cy="153" r="2" fill="#ffb8b8"/>
+                    </g>
+
+                    <!-- 5. BRAZO DERECHO (EXTENDIDO AL FRENTE) -->
+                    <g class="right-arm">
+                        <path d="M 240 215 C 265 215, 285 190, 275 175 C 260 160, 235 190, 238 215 Z" fill="url(#skin)"/>
+                        <!-- Almohadilla pata derecha -->
+                        <ellipse cx="268" cy="182" rx="5" ry="7" fill="#ffb8b8" transform="rotate(20 268 182)"/>
+                        <circle cx="262" cy="172" r="2" fill="#ffb8b8"/>
+                        <circle cx="269" cy="170" r="2" fill="#ffb8b8"/>
+                        <circle cx="275" cy="174" r="2" fill="#ffb8b8"/>
+                    </g>
+
+                    <!-- 6. CABEZA GORDITA CON ARRUGAS REALISTAS (Bulldog style) -->
+                    <g>
+                        <!-- Cuello/Papada -->
+                        <ellipse cx="187" cy="205" rx="50" ry="20" fill="url(#skin-shadow)"/>
+                        <!-- Cabeza Principal -->
+                        <path d="M 140 160 C 130 110, 240 110, 230 160 C 235 195, 135 195, 140 160 Z" fill="url(#skin)"/>
+                        
+                        <!-- Orejas Caídas Realistas -->
+                        <path d="M 142 128 C 135 125, 120 140, 125 155 C 130 165, 142 150, 142 128 Z" fill="url(#skin-shadow)"/>
+                        <path d="M 228 128 C 235 125, 250 140, 245 155 C 240 165, 228 150, 228 128 Z" fill="url(#skin-shadow)"/>
+
+                        <!-- Ojitos Negros Entornados (Expresión exacta de tu foto) -->
+                        <ellipse cx="165" cy="150" rx="7" ry="5" fill="url(#eye-glow)" transform="rotate(-5 165 150)"/>
+                        <circle cx="163" cy="148" r="1.5" fill="#ffffff"/> <!-- Brillo ojo izq -->
+
+                        <ellipse cx="210" cy="150" rx="7" ry="5" fill="url(#eye-glow)" transform="rotate(5 210 150)"/>
+                        <circle cx="208" cy="148" r="1.5" fill="#ffffff"/> <!-- Brillo ojo der -->
+
+                        <!-- Arrugas de la frente (Expresión realista) -->
+                        <path d="M 175 132 Q 187 128 200 132" stroke="#bda77a" stroke-width="2" fill="none" stroke-linecap="round"/>
+                        <path d="M 170 139 Q 187 134 205 139" stroke="#bda77a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                        <!-- Hocico Pronunciado y Gofio (Mofletes caídos) -->
+                        <path d="M 160 172 C 160 160, 215 160, 215 172 C 215 192, 160 192, 160 172 Z" fill="url(#belly)"/>
+                        
+                        <!-- Pliegue del moflete medio -->
+                        <path d="M 187 168 L 187 186" stroke="#bda77a" stroke-width="1.5" fill="none"/>
+                        <path d="M 172 180 Q 187 188 203 180" stroke="#bda77a" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+                        <!-- Nariz Realista Compleja -->
+                        <path d="M 177 165 C 177 159, 197 159, 197 165 C 197 172, 177 172, 177 165 Z" fill="#2c3e50"/>
+                        <path d="M 181 164 C 183 162, 191 162, 193 164" stroke="#111" stroke-width="1" fill="none"/>
+                        <circle cx="183" cy="167" r="1" fill="#111"/>
+                        <circle cx="191" cy="167" r="1" fill="#111"/>
+                    </g>
+
+                </g>
+            </svg>
         </div>
     </div>
 
