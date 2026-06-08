@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Docker de Victor Manuel Ortega Urbano</title>
     <style>
-        /* Fondo azul con cuadrícula limpia idéntico al de tu captura */
+        /* Fondo azul con cuadrícula idéntico al de tus capturas */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             text-align: center; 
@@ -35,7 +35,7 @@
             color: #ffcc00;
             font-size: 3rem;
             font-weight: bold;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
             text-shadow: 
                 3px 3px 0px #b38600, 
                 5px 5px 5px rgba(0, 0, 0, 0.6);
@@ -48,220 +48,49 @@
             filter: drop-shadow(2px 2px 2px rgba(0,0,0,0.5));
         }
 
-        /* --- ESCENA DEL LOBO DE FRENTE --- */
-        .stage {
-            width: 240px;
-            height: 280px;
-            position: relative;
+        /* --- ESCENA 3D ISOMÉTRICA --- */
+        .scene {
+            width: 400px;
+            height: 350px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Animación de respiración general */
-        .minecraft-wolf-front {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             position: relative;
-            animation: wolfBreathe 3s ease-in-out infinite;
+            perspective: 800px; /* Profundidad de cámara */
         }
 
-        /* OREJAS SIMÉTRICAS */
-        .ears-container {
-            display: flex;
-            justify-content: space-between;
-            width: 80px;
-            height: 16px;
+        /* Rotación global para igualar la perspectiva de la imagen */
+        .wolf-isometric {
+            position: absolute;
+            left: 35%;
+            top: 40%;
+            transform-style: preserve-3d;
+            transform: rotateX(-25deg) rotateY(45deg);
         }
-        .ear {
-            width: 16px;
-            height: 16px;
-            background-color: #b4b4b4;
-            border-top: 4px solid #9c9c9c;
-            animation: earTwitch 4s ease-in-out infinite;
-        }
-        .ear.left { transform-origin: bottom left; }
-        .ear.right { transform-origin: bottom right; }
 
-        /* CABEZA CUADRADA PERFECTA */
-        .wolf-head {
-            width: 80px;
-            height: 72px;
-            background-color: #d7d7d7;
-            box-shadow: inset 0 -6px 0px #b4b4b4, 0 8px 15px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-end;
-            padding-bottom: 8px;
+        /* Clase base para armar cubos con caras */
+        .cube {
+            position: absolute;
+            transform-style: preserve-3d;
+        }
+        .face {
+            position: absolute;
             box-sizing: border-box;
         }
 
-        /* OJOS DE MINECRAFT SIMÉTRICOS (Blanco, Negro, Gris) */
-        .eyes-container {
+        /* --- CUERPO PRINCIPAL --- */
+        .body-cube {
+            width: 70px; height: 70px; depth: 120px;
+            transform: translate3d(-35px, -35px, -60px);
+        }
+        .body-cube .front { width: 70px; height: 70px; background: #c2c2c2; transform: rotateY(0deg) translateZ(60px); }
+        .body-cube .back  { width: 70px; height: 70px; background: #a8a8a8; transform: rotateY(180deg) translateZ(60px); }
+        .body-cube .top   { width: 70px; height: 120px; background: #dbdbdb; transform: rotateX(90deg) translateZ(60px); }
+        .body-cube .bottom{ width: 70px; height: 120px; background: #919191; transform: rotateX(-90deg) translateZ(10px); }
+        .body-cube .left  { width: 120px; height: 70px; background: #cccccc; transform: rotateY(-90deg) translateZ(35px); }
+        .body-cube .right { width: 120px; height: 70px; background: #bebebe; transform: rotateY(90deg) translateZ(35px); }
+
+        /* --- CABEZA CON CASCO DE DIAMANTE --- */
+        .head-group {
             position: absolute;
-            top: 24px;
-            width: 64px;
-            display: flex;
-            justify-content: space-between;
+            transform-style: preserve-3d;
+            transform: translate3d(-25px, -70px, 65px); /* Al frente y arriba */
         }
-        .eye {
-            width: 12px;
-            height: 12px;
-            background-color: #ffffff;
-            position: relative;
-        }
-        /* Pupila negra interna */
-        .eye::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            height: 12px;
-            background-color: #1a1a1a;
-            right: 0;
-            top: 0;
-        }
-
-        /* HOCICO CENTRADO CON NARIZ */
-        .wolf-muzzle {
-            width: 32px;
-            height: 24px;
-            background-color: #e3e3e3;
-            border-bottom: 4px solid #b4b4b4;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            z-index: 4;
-        }
-        /* Nariz negra sobresaliente */
-        .wolf-muzzle::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 8px;
-            background-color: #1a1a1a;
-            top: 0;
-        }
-
-        /* COLLAR MORADO CEÑIDO AL CUERPO */
-        .wolf-collar {
-            width: 64px;
-            height: 16px;
-            background-color: #7b1fa2; /* El morado exacto de Minecraft */
-            box-shadow: inset 0 -4px 0px #5c137a, 0 4px 6px rgba(0,0,0,0.2);
-            z-index: 2;
-            margin-top: -2px;
-        }
-
-        /* CUERPO TRASERO (Visto en perspectiva frontal) */
-        .wolf-body {
-            width: 56px;
-            height: 80px;
-            background-color: #c8c8c8;
-            box-shadow: inset 0 -10px 0px #b4b4b4;
-            z-index: 1;
-            margin-top: -4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding: 0 4px;
-            box-sizing: border-box;
-        }
-
-        /* PATAS DELANTERAS */
-        .legs-container {
-            width: 72px;
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            bottom: -60px;
-            z-index: 2;
-        }
-        .leg {
-            width: 18px;
-            height: 65px;
-            background-color: #d7d7d7;
-            box-shadow: inset 0 -12px 0px #b4b4b4;
-        }
-        .leg.right-leg {
-            background-color: #c8c8c8;
-            box-shadow: inset 0 -12px 0px #a6a6a6;
-        }
-
-        /* Corazones flotantes decorativos */
-        .heart {
-            position: absolute;
-            color: #ff3366;
-            font-size: 1.6rem;
-            animation: floatUp 3.5s linear infinite;
-            opacity: 0;
-            filter: drop-shadow(2px 2px 0px rgba(0,0,0,0.2));
-        }
-
-        /* --- ANIMACIONES --- */
-        @keyframes wolfBreathe {
-            0%, 100% { transform: translateY(0) scaleY(1); }
-            50% { transform: translateY(-5px) scaleY(1.02); }
-        }
-
-        @keyframes earTwitch {
-            0%, 90%, 100% { transform: rotate(0deg); }
-            93% { transform: rotate(-8deg); }
-            96% { transform: rotate(8deg); }
-        }
-
-        @keyframes floatUp {
-            0% { transform: translateY(40px) scale(0.6); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(-80px) scale(1.1); opacity: 0; }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1><span class="rocket">🚀</span>Bienvenidos al Docker de Victor Manuel Ortega Urbano</h1>
-        
-        <!-- Escena del lobo mirando fijamente al frente -->
-        <div class="stage">
-            <!-- Corazones de fondo -->
-            <div class="heart" style="left: -10px; top: 60px; animation-delay: 0s;">❤</div>
-            <div class="heart" style="right: -10px; top: 90px; animation-delay: 1.5s;">❤</div>
-
-            <div class="minecraft-wolf-front">
-                <!-- Orejas -->
-                <div class="ears-container">
-                    <div class="ear left"></div>
-                    <div class="ear right"></div>
-                </div>
-                
-                <!-- Cabeza con ojos y hocico -->
-                <div class="wolf-head">
-                    <div class="eyes-container">
-                        <div class="eye"></div>
-                        <div class="eye"></div>
-                    </div>
-                    <div class="wolf-muzzle"></div>
-                </div>
-                
-                <!-- Collar -->
-                <div class="wolf-collar"></div>
-                
-                <!-- Cuerpo -->
-                <div class="wolf-body"></div>
-
-                <!-- Patas delanteras abajo -->
-                <div class="legs-container">
-                    <div class="leg left-leg"></div>
-                    <div class="leg right-leg"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
